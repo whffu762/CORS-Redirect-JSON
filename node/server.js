@@ -15,7 +15,6 @@ app.get("/", (req, resp) =>{
     resp.sendFile(__dirname + '/app/html/front.html');
 });
 
-
 app.get("/getfrontJS", (req, resp) =>{
     resp.sendFile(__dirname + '/app/js/front.js');
 })
@@ -29,7 +28,6 @@ app.post("/toNode", (req, resp) =>{
 app.get("/redirectFromSpring", (req, resp) =>{
 
     var data = req.query.data;
-    console.log(data);
     var json = JSON.stringify({"data" : data})
 
     resp.send(json);
