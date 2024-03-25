@@ -2,6 +2,7 @@ package com.example.spring.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -12,16 +13,20 @@ import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
 @Controller
-@CrossOrigin(origins = { "http://localhost:5000", "null"})
+//@CrossOrigin(origins = { "http://localhost:5000", "null"}, maxAge = 5000)
 public class CorsController {
 
     @PostMapping("/toSpring")
     public ResponseEntity<String> spring(@RequestBody Map<String, String> jsonMap) throws JsonProcessingException {
 
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Access-Control-Allow-Origin", "http://localhost:5000");
+
         ObjectMapper objectMapper = new ObjectMapper();
         String result = objectMapper.writeValueAsString(jsonMap);
-        return ResponseEntity.ok().body(result);
+        return ResponseEntity.ok().headers(headers).body(result);
     }
+
 
     @PostMapping("/redirect-spring-flask")
     public String redirectToFlask(@RequestBody Map<String, String> jsonMap) {
