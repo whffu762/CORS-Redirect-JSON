@@ -7,7 +7,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.Arrays;
 
-//@Configuration
+@Configuration
 public class WebConfig implements WebMvcConfigurer {
 
     @Override
@@ -15,7 +15,7 @@ public class WebConfig implements WebMvcConfigurer {
 
         registry.addMapping("/**")
                 .allowedOrigins("http://localhost:5000", "null")
-                .allowedMethods("POST")
+                .allowedMethods("POST", "GET")
                 .allowCredentials(true)
                 .maxAge(3600);
     }
