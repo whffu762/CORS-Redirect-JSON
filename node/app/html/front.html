@@ -9,15 +9,37 @@
     <form>
         <input id="data" type="text">
     </form>
-    <button type="button" id="spring">spring</button>
+    <div>CORS Spring</div>
+    <button type="button" id="spring-mvcConfigurer">spring mvcConfigurer</button>
+    <button type="button" id="spring-annotation">spring annotation</button>
+    <div>전역 설정이 이미 적용되어 있으면 안되는게 정상</div>
+    <button type="button" id="spring-header">spring header</button>
+    
+    <div>CORS 다른 서버</div>
     <button type="button" id="node">node</button>
     <button type="button" id="flask">flask</button>
     <p></p>
-    <button type="button" id="redirect-spring-flask">redirect Spring-flask</button>
-    <button type="button" id="redirect-spring-node">redirect Spring-Node</button>
+    
+    <div>Redirect</div>
+    <button type="button" id="redirect-spring-flask">Spring -> flask</button>
+    <button type="button" id="redirect-spring-node">Spring -> Node</button>
+    <button type="button" id="redirect-spring-flask-addAttribute">spring -> flask addAttribute 사용</button>
+    <button type="button" id="redirect-spring-flask-settingCodeAndHeader">spring -> flask 상태코드와 Location 헤더 설정</button>
+
+    <div>이건 원래 안되는게 맞는거</div>
+    <button type="button" id="redirect-spring-flask-model">spring -> flask : Model 사용</button>
+    <button type="button" id="redirect-spring-flask-addFlashAttribute">spring -> flask addFlashAttribute 이용</button>
+    
+    <div>이건 왜 안되는거지?</div>
+    <button type="button" id="redirect-spring-spring-addFlashAttribute">spring -> spring addFlashAttribute 이용</button>
+
     <p></p>
-    <button type="button" id="addAttr">redirect addAttribute</button>
-    <button type="button" id="addFlashAttr">redirect addFlashAttribute</button>
+    <div>JSON</div>
+    <button type="button" id="toObject-objectMapper">역직렬화 : objectMapper 이용</button>
+    <button type="button" id="toJSON-objectMapper">직렬화 : objectMapper 이용</button>
+    <button type="button" id="toJSON-responseBody">직렬화 : responseBody 이용</button>
+    <button type="button" id="toJSON-responseEntity">직렬화 : responseEntity 이용</button>
+
 
     <div>
         result is <span id="result"></span>
