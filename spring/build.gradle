@@ -18,11 +18,13 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-
-    implementation 'org.projectlombok:lombok:1.18.24'
     compileOnly 'org.projectlombok:lombok:1.18.24'
-    annotationProcessor'org.projectlombok:lombok:1.18.24'
+    //annotationProcessor 'org.projectlombok:lombok:1.18.24'
+}
 
+//compileOnly 로 지정된 라이브러리를 annotationProcessor 으로 지정
+configurations {
+    annotationProcessor.extendsFrom compileOnly
 }
 
 tasks.named('test') {

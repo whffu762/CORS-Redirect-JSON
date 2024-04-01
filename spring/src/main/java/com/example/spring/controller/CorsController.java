@@ -20,7 +20,7 @@ public class CorsController {
         전역으로 설정됨
      */
     @PostMapping("/toSpring-mvcConfigurer")
-    public ResponseEntity<String> withWebMvcConfigurer(@RequestBody Map<String, String> jsonMap) throws JsonProcessingException {
+    public ResponseEntity<String> withWebMvcConfigurer(@RequestBody Map<String, String> jsonMap) throws JsonProcessingException, InterruptedException {
 
         log.info("MvcConfigurer 을 통한 컨트롤러 호출");
 
