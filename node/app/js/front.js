@@ -15,8 +15,8 @@ function makeRequest(url){
         },
         body: JSON.stringify(data)
     }).then(response => {
-        console.log("응답이 왔음");
-        console.log("url : ", response.url);
+        console.log("request url : ", url);
+        console.log("response url : ", response.url);
         return response.json();
     }).then(json => {
         result.innerHTML = json.data;
