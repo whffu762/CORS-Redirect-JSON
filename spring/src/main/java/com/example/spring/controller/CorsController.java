@@ -12,7 +12,6 @@ import java.util.Map;
 @Controller
 @RequestMapping("/cors")
 @Slf4j
-
 public class CorsController {
 
     /*

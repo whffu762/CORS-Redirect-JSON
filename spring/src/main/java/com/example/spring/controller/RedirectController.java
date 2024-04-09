@@ -8,9 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.net.URI;
@@ -23,6 +21,33 @@ import java.util.Map;
 @RequestMapping("/redirect")
 @Slf4j
 public class RedirectController {
+
+    /*
+        redirect 되면 GET 메소드로 변경됨
+        또한 URL encoding 또한 다시 해야 함
+     */
+    @GetMapping("/fromSpring")
+    public String redirectFromSpring(@RequestParam("data") String data) {
+
+        String tmp = URLEncoder.encode(data, StandardCharsets.UTF_8);
+
+        return "redirect:http://localhost:5000/redirectFromSpring?data="+tmp;
+    }
+
+//    @PostMapping("/fromSpring")
+//    public String redirectFromSpring2(@RequestParam("data") String data){
+//
+//        return "redirect:http:/localhost:5000/redirectFromSpring?data=" + data;
+//    }
+    /*
+        Spring 이 POST 로 받은 요청을 redirect
+     */
+    @PostMapping("/spring-spring")
+    public String redirectToSpring(@RequestBody Map<String, String> jsonMap){
+
+        String data = URLEncoder.encode(jsonMap.get("data"), StandardCharsets.UTF_8);
+        return "redirect:/redirect/fromSpring?data=" + data;
+    }
 
 
     //redirect 접두사를 이용하면 GET 밖에 안 됨 자세한건 노션 참고
