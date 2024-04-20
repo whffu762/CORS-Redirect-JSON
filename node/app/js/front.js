@@ -61,9 +61,34 @@ corsBtn5.addEventListener("click", function () {
     makeRequest(url);
 })
 
-
+const redirectBtnPost = document.getElementById("redirect-spring-spring-post");
+const redirectBtnGet = document.getElementById("redirect-spring-spring-get");
 const redirectBtn1 = document.getElementById("redirect-spring-flask");
 const redirectBtn2 = document.getElementById("redirect-spring-node");
+
+redirectBtnPost.addEventListener("click", function(){
+
+    url = "http://localhost:8080/redirect/spring-spring";
+    makeRequest(url);
+})
+
+redirectBtnGet.addEventListener("click", function(){
+
+    const input = document.getElementById("data").value;
+    const result = document.getElementById("result");
+    result.innerHTML = "";
+
+    url = "http://localhost:8080/redirect/spring-spring?data=" + input;
+    fetch(url, {
+        method: "GET"
+    }).then(response => {
+        console.log("request url : ", url);
+        console.log("response url : ", response.url);
+        return response.json();
+    }).then(json => {
+        result.innerHTML = json.data;
+    });
+})
 
 redirectBtn1.addEventListener("click", function(){
     

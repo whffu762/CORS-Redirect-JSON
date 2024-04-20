@@ -34,18 +34,26 @@ public class RedirectController {
         return "redirect:http://localhost:5000/redirectFromSpring?data="+tmp;
     }
 
-//    @PostMapping("/fromSpring")
-//    public String redirectFromSpring2(@RequestParam("data") String data){
-//
-//        return "redirect:http:/localhost:5000/redirectFromSpring?data=" + data;
-//    }
     /*
         Spring 이 POST 로 받은 요청을 redirect
      */
     @PostMapping("/spring-spring")
-    public String redirectToSpring(@RequestBody Map<String, String> jsonMap){
+    public String redirectToSpringPost(@RequestBody Map<String, String> jsonMap){
 
         String data = URLEncoder.encode(jsonMap.get("data"), StandardCharsets.UTF_8);
+        return "redirect:/redirect/fromSpring?data=" + data;
+    }
+
+    /*
+        Spring 이 GET 으로 받은 요청을 Redirect
+
+        이걸 만든 이유는 Spring Security 에서의 동작 때문임
+        로그인이 필요한 특정 기능을 사용할 때 로그인 하지 않은 요청에 대해선 로그인을 유도했다가 다시 원래 페이지로 돌아오는 동작이 이루어져야 함
+        자세한 설명은 redirect 노션 참고
+     */
+    @GetMapping("/spring-spring")
+    public String redirectToSpringGet(@RequestParam("data") String data){
+
         return "redirect:/redirect/fromSpring?data=" + data;
     }
 
