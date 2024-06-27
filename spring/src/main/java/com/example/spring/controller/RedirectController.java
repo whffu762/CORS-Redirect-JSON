@@ -34,6 +34,12 @@ public class RedirectController {
         return "redirect:http://localhost:5000/redirectFromSpring?data="+tmp;
     }
 
+    @PostMapping("/fromSpring")
+    public void redirectFromSpring2(@RequestBody String data){
+
+        log.info("post 호출");
+
+    }
     /*
         Spring 이 POST 로 받은 요청을 redirect
      */
@@ -54,7 +60,8 @@ public class RedirectController {
     @GetMapping("/spring-spring")
     public String redirectToSpringGet(@RequestParam("data") String data){
 
-        return "redirect:/redirect/fromSpring?data=" + data;
+        String tmp = URLEncoder.encode(data, StandardCharsets.UTF_8);
+        return "redirect:/redirect/fromSpring?data=" + tmp;
     }
 
 
